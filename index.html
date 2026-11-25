@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Fredericka Nketsia: Computer Science (Data Science and AI) student at the University of Dundee.">
+<title>Fredericka Nketsia Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: sticky name bar, a dark "lab" panel as the opening (name plus an animated 30-to-21 feature-selection grid), then ruled project entries. */
+  :root {
+    --bg: #f2f7f7;
+    --surface: #ffffff;
+    --fg: #10222a;
+    --muted: #47595f;
+    --accent: #0b6a72;
+    --accent-fg: #ffffff;
+    --tint: #dcedee;
+    --line: #cfdcde;
+    --pop: #ff6a3d;
+    --pop-fg: #1b0b05;
+    --mark: rgba(255, 106, 61, .7);
+    --ink: #0b1f26;
+    --ink-fg: #eaf6f7;
+    --ink-muted: #9cc0c6;
+    --ink-line: #2a4b55;
+    --chip-on: #5bd1db;
+    --code-bg: #0f1d23;
+    --code-fg: #d8e7ea;
+    --display: "Bricolage Grotesque", "Inter", "Helvetica Neue", Arial, sans-serif;
+    --body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1418; --surface: #112027; --fg: #e5eef0; --muted: #9fb3ba;
+      --accent: #5bc8d1; --accent-fg: #06272b; --tint: #15323a; --line: #24373d;
+      --mark: rgba(255, 106, 61, .42); --ink: #123039; --ink-line: #2f5663;
+      --code-bg: #091216;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a1418; --surface: #112027; --fg: #e5eef0; --muted: #9fb3ba;
+    --accent: #5bc8d1; --accent-fg: #06272b; --tint: #15323a; --line: #24373d;
+    --mark: rgba(255, 106, 61, .42); --ink: #123039; --ink-line: #2f5663;
+    --code-bg: #091216;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.65;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--pop); outline-offset: 3px; border-radius: 3px; }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-fg); padding: .6rem 1rem; z-index: 40; }
+  .skip:focus { left: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .wrap { width: 100%; max-width: 70rem; margin: 0 auto; }
+
+  /* Header */
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .35rem 1.5rem; padding-block: .65rem; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.15rem; color: var(--fg); text-decoration: none; }
+  .brand span { color: var(--pop); }
+  nav { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .5rem; }
+  nav ul { display: flex; flex-wrap: wrap; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+  nav a { display: inline-block; color: var(--fg); text-decoration: none; font-size: .92rem; font-weight: 500; padding: .3rem .8rem; border-radius: 999px; }
+  nav a:hover { background: var(--tint); }
+  .theme { font: inherit; font-size: .85rem; font-weight: 500; background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: .28rem .8rem; cursor: pointer; }
+  .theme:hover { color: var(--fg); border-color: var(--accent); }
+
+  /* Type */
+  h1, h2, h3 { font-family: var(--display); line-height: 1.08; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.8rem, 8vw, 5.4rem); font-weight: 800; letter-spacing: -.02em; }
+  h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -.01em; }
+  h3 { font-size: 1.4rem; font-weight: 600; }
+  mark { background: none; color: inherit; box-shadow: inset 0 -.28em 0 var(--mark); padding: 0 .08em; }
+  p { margin: 0 0 1rem; max-width: 44rem; }
+
+  section { padding-block: 4.5rem; border-top: 1px solid var(--line); }
+  #home { border-top: 0; padding-block: 1.75rem 3rem; }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head p { color: var(--muted); margin: .9rem 0 0; font-size: 1.1rem; }
+
+  /* Hero panel */
+  .panel { background: var(--ink); color: var(--ink-fg); border-radius: 20px; padding: clamp(1.5rem, 4.5vw, 3.25rem); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 2.5rem 3rem; align-items: center; overflow: hidden; }
+  .sticker { display: inline-block; background: var(--pop); color: var(--pop-fg); font-family: var(--mono); font-weight: 500; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; padding: .35rem .8rem; border-radius: 6px; transform: rotate(-3deg); margin-bottom: 1.25rem; }
+  .eyebrow { font-family: var(--mono); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 .9rem; }
+  .panel h1 { color: var(--ink-fg); }
+  .role { font-family: var(--display); font-size: clamp(1.3rem, 3vw, 1.85rem); font-weight: 600; margin: 1.1rem 0 0; min-height: 2.4em; }
+  .role .rot { color: var(--chip-on); transition: opacity .2s; display: inline-block; }
+  .caret { display: inline-block; width: .09em; height: 1em; background: var(--pop); margin-left: .12em; vertical-align: -.1em; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .lede { color: #cfe3e6; font-size: 1.08rem; margin: .75rem 0 0; max-width: 34rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .btn { display: inline-block; padding: .75rem 1.3rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: 2px solid transparent; transition: transform .15s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary { background: var(--pop); color: var(--pop-fg); }
+  .btn.ghost { color: var(--ink-fg); border-color: var(--ink-muted); }
+  .btn.solid { background: var(--accent); color: var(--accent-fg); }
+
+  /* Feature lab */
+  .lab { margin: 0; background: rgba(255, 255, 255, .05); border: 1px solid var(--ink-line); border-radius: 14px; padding: 1.1rem 1.1rem 1rem; min-width: 0; }
+  .lab-head { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-bottom: .9rem; }
+  .lab-title { font-family: var(--mono); font-size: .76rem; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-muted); }
+  .replay { font: inherit; font-size: .8rem; font-weight: 600; background: transparent; color: var(--ink-fg); border: 1px solid var(--ink-muted); border-radius: 999px; padding: .2rem .75rem; cursor: pointer; }
+  .replay:hover { background: rgba(255, 255, 255, .1); }
+  .grid { display: grid; grid-template-columns: 2.6rem repeat(10, minmax(0, 1fr)); gap: 4px; align-items: center; }
+  .grid .rl { font-family: var(--mono); font-size: .66rem; color: var(--ink-muted); }
+  .chip { display: block; aspect-ratio: 1; border-radius: 4px; background: var(--chip-on); transition: background .35s, transform .35s, opacity .35s, box-shadow .35s; }
+  .chip:hover { transform: scale(1.18); }
+  .chip.off { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink-line); opacity: .6; transform: scale(.78); }
+  .readout { display: flex; align-items: baseline; gap: .6rem; margin: 1rem 0 .2rem; }
+  .readout .big { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--ink-fg); font-variant-numeric: tabular-nums; }
+  .readout .of { color: var(--ink-muted); font-size: .95rem; }
+  .lab figcaption, .lab .note { font-size: .8rem; color: var(--ink-muted); line-height: 1.5; margin: .5rem 0 0; }
+
+  /* Facts row */
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem 2rem; margin: 2.25rem 0 0; padding: 0; }
+  .facts div { border-top: 3px solid var(--accent); padding-top: .7rem; }
+  .facts dt { font-family: var(--mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .facts dd { margin: .25rem 0 0; font-weight: 500; }
+
+  /* Projects */
+  .project { display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); gap: 2rem 3rem; padding-block: 2.5rem; border-top: 1px solid var(--line); }
+  .project:first-of-type { border-top: 0; padding-top: 0; }
+  .meta p { margin: 0 0 .4rem; color: var(--muted); font-size: .92rem; }
+  .meta .kind { display: inline-block; font-family: var(--mono); font-size: .74rem; letter-spacing: .05em; text-transform: uppercase; background: var(--pop); color: var(--pop-fg); padding: .15rem .55rem; border-radius: 4px; margin-bottom: .6rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+  .tags li { font-family: var(--mono); font-size: .76rem; background: var(--tint); color: var(--fg); padding: .2rem .55rem; border-radius: 4px; }
+  .detail { min-width: 0; }
+  .detail h3 { margin-bottom: 1.1rem; font-size: 1.7rem; }
+  .detail dl { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .detail dl > div, .detail dd { min-width: 0; }
+  .detail dt { font-weight: 600; font-size: .82rem; letter-spacing: .05em; text-transform: uppercase; color: var(--accent); margin-bottom: .15rem; }
+  .detail dd { margin: 0; max-width: 42rem; }
+
+  .stats { list-style: none; margin: 0 0 2rem; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .stats li { background: var(--surface); padding: 1.1rem 1.1rem; }
+  .stats .num { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(1.7rem, 3.2vw, 2.4rem); color: var(--accent); line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stats .cap { display: block; font-size: .82rem; color: var(--muted); margin-top: .35rem; line-height: 1.35; }
+  .table-wrap { overflow-x: auto; max-width: 100%; margin-top: 1rem; }
+  table { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: .9rem; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .04em; }
+  td:first-child { font-weight: 500; }
+  caption { caption-side: bottom; text-align: left; color: var(--muted); font-size: .82rem; padding-top: .5rem; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; }
+  .skills-grid h3 { margin-bottom: 1.25rem; }
+  .skill-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+  .skill-list li { padding-left: 1rem; border-left: 3px solid var(--tint); }
+  .skill-list li:hover { border-left-color: var(--pop); }
+  .skill-list strong { display: block; }
+  .skill-list span { color: var(--muted); }
+  .code-block { margin-top: 3.5rem; }
+  .code-block h3 { margin-bottom: .5rem; font-size: 1.25rem; }
+  .code-block > p { color: var(--muted); }
+  pre { margin: 0 0 1.5rem; background: var(--code-bg); color: var(--code-fg); border-radius: 10px; padding: 1.1rem 1.25rem; overflow-x: auto; font-family: var(--mono); font-size: .84rem; line-height: 1.6; max-width: 100%; }
+  .code-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; }
+  .code-pair figure { margin: 0; min-width: 0; }
+  figcaption.cap { font-size: .85rem; color: var(--muted); margin-bottom: .5rem; }
+
+  /* CV */
+  .cv-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; max-width: 46rem; margin-top: 1.75rem; }
+  .cv-grid a { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; transition: transform .2s, box-shadow .2s; }
+  .cv-grid a:hover { transform: translateY(-4px) rotate(-.4deg); box-shadow: 0 10px 24px rgba(0, 0, 0, .18); }
+  .cv-grid img { display: block; width: 100%; height: auto; }
+
+  /* Profiles */
+  .profiles { list-style: none; margin: 0; padding: 0; max-width: 42rem; border-top: 1px solid var(--line); }
+  .profiles li { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1rem; padding-block: 1.1rem; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .profiles .label { font-family: var(--mono); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .profiles a, .profiles .value { overflow-wrap: anywhere; font-weight: 500; font-size: 1.05rem; }
+  .copy { margin-left: .75rem; font: inherit; font-size: .85rem; background: transparent; border: 1px solid var(--line); color: var(--fg); border-radius: 999px; padding: .1rem .7rem; cursor: pointer; }
+  .copy:hover { border-color: var(--accent); }
+
+  footer { border-top: 1px solid var(--line); padding-block: 2.5rem 3rem; color: var(--muted); font-size: .92rem; }
+  footer p { max-width: 50rem; }
+  footer strong { color: var(--fg); }
+
+  @media (max-width: 56rem) {
+    .panel, .project, .skills-grid, .code-pair { grid-template-columns: minmax(0, 1fr); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .project { gap: 1rem; }
+    section { padding-block: 3rem; }
+    .profiles li { grid-template-columns: minmax(0, 1fr); gap: .15rem; }
+  }
+  @media (max-width: 30rem) {
+    .cv-grid { grid-template-columns: minmax(0, 1fr); }
+    .facts { grid-template-columns: minmax(0, 1fr); }
+    .grid { grid-template-columns: 2.1rem repeat(10, minmax(0, 1fr)); gap: 3px; }
+    nav a { padding: .3rem .6rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .caret { animation: none; }
+    .btn, .chip, .cv-grid a { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#home">Fredericka<span>.</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#profiles">Contact</a></li>
+      </ul>
+      <button class="theme" id="theme" type="button" aria-label="Switch between light and dark theme">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <section id="home" aria-labelledby="home-title">
+      <div class="panel">
+        <div>
+          <span class="sticker">Open to summer internships</span>
+          <p class="eyebrow">BSc Computer Science (Data Science and AI) | University of Dundee</p>
+          <h1 id="home-title">Fredericka Nketsia</h1>
+          <p class="role"><span class="sr">I build machine-learning models, Java applications and clear technical reports.</span><span aria-hidden="true">I build <span class="rot" id="rot">machine-learning models</span><span class="caret"></span></span></p>
+          <p class="lede">Data science and AI student who evaluates models honestly and writes up what the results do and do not show. I am looking for an 8 to 12-week summer internship where I can put data, AI and engineering skills to work on real projects.</p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">See my projects</a>
+            <a class="btn ghost" href="Fredericka_Nketsia_CV.pdf" target="_blank" rel="noopener">Open my CV (PDF)</a>
+          </div>
+        </div>
+
+        <figure class="lab" aria-labelledby="lab-cap">
+          <div class="lab-head">
+            <span class="lab-title">Feature selection, live</span>
+            <button class="replay" id="replay" type="button">Replay</button>
+          </div>
+          <div class="grid" aria-hidden="true">
+            <span class="rl">mean</span>
+            <span class="chip" title="radius_mean"></span>
+            <span class="chip" title="texture_mean"></span>
+            <span class="chip off" data-order="6" title="perimeter_mean"></span>
+            <span class="chip" title="area_mean"></span>
+            <span class="chip" title="smoothness_mean"></span>
+            <span class="chip" title="compactness_mean"></span>
+            <span class="chip" title="concavity_mean"></span>
+            <span class="chip" title="concave_points_mean"></span>
+            <span class="chip" title="symmetry_mean"></span>
+            <span class="chip off" data-order="2" title="fractal_dimension_mean"></span>
+            <span class="rl">se</span>
+            <span class="chip" title="radius_se"></span>
+            <span class="chip off" data-order="1" title="texture_se"></span>
+            <span class="chip off" data-order="5" title="perimeter_se"></span>
+            <span class="chip" title="area_se"></span>
+            <span class="chip off" data-order="9" title="smoothness_se"></span>
+            <span class="chip" title="compactness_se"></span>
+            <span class="chip" title="concavity_se"></span>
+            <span class="chip" title="concave_points_se"></span>
+            <span class="chip off" data-order="3" title="symmetry_se"></span>
+            <span class="chip off" data-order="7" title="fractal_dimension_se"></span>
+            <span class="rl">worst</span>
+            <span class="chip" title="radius_worst"></span>
+            <span class="chip" title="texture_worst"></span>
+            <span class="chip" title="perimeter_worst"></span>
+            <span class="chip" title="area_worst"></span>
+            <span class="chip off" data-order="4" title="smoothness_worst"></span>
+            <span class="chip" title="compactness_worst"></span>
+            <span class="chip" title="concavity_worst"></span>
+            <span class="chip" title="concave_points_worst"></span>
+            <span class="chip off" data-order="8" title="symmetry_worst"></span>
+            <span class="chip" title="fractal_dimension_worst"></span>
+          </div>
+          <div class="readout"><span class="big" id="count">21</span><span class="of">of 30 features kept</span></div>
+          <figcaption id="lab-cap">An illustration of the hill-climbing search from my group project. In the main run it removed 9 of 30 features and test accuracy stayed at 96.5%. Which features are removed here is illustrative.</figcaption>
+        </figure>
+      </div>
+
+      <dl class="facts">
+        <div><dt>Studying</dt><dd>BSc Computer Science (Data Science and AI), University of Dundee, expected 2029</dd></div>
+        <div><dt>Looking for</dt><dd>Summer internship, 8 to 12 weeks, in engineering, data science or AI</dd></div>
+        <div><dt>Tools</dt><dd>Python, Java, Excel</dd></div>
+        <div><dt>Based in</dt><dd>Dundee, Scotland. Eligible to work in the UK.</dd></div>
+      </dl>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
+        <h2 id="projects-title">My <mark>projects</mark></h2>
+        <p>Three pieces of work, with what each one is, what I did and what I learned.</p>
+      </div>
+
+      <article class="project">
+        <div class="meta">
+          <p class="kind">Group project</p>
+          <p>Introduction to AI and Machine Learning, University of Dundee</p>
+          <ul class="tags" aria-label="Technologies used">
+            <li>Python</li><li>pandas</li><li>scikit-learn</li><li>Logistic regression</li><li>Hill-climbing search</li><li>WDBC dataset</li>
+          </ul>
+        </div>
+        <div class="detail">
+          <h3>Early Breast Cancer Detection</h3>
+          <ul class="stats" aria-label="Headline results from the main experiment">
+            <li><span class="num" data-to="96.5" data-dec="1" data-suffix="%">96.5%</span><span class="cap">accuracy on 114 held-out patients</span></li>
+            <li><span class="num" data-to="92.9" data-dec="1" data-suffix="%">92.9%</span><span class="cap">recall: 39 of 42 malignant tumours caught</span></li>
+            <li><span class="num" data-to="0.996" data-dec="3" data-suffix="">0.996</span><span class="cap">AUC (area under the ROC curve)</span></li>
+            <li><span class="num">30 to 21</span><span class="cap">features after hill-climbing, with identical scores</span></li>
+          </ul>
+          <dl>
+            <div><dt>What it is</dt><dd>A machine-learning study of whether tumour measurements can support early breast cancer detection. The team of four used the Wisconsin Diagnostic Breast Cancer (WDBC) dataset, which holds 569 patients and 30 numeric features, and compared two approaches: a logistic regression classifier, and hill-climbing feature selection that searches for a smaller set of inputs. A random forest scored candidate feature sets inside the search, and logistic regression was the final model.</dd></div>
+            <div><dt>My role</dt><dd>I contributed to the hill-climbing feature-selection component and wrote the group's technical report.</dd></div>
+            <div><dt>What the results show</dt><dd>Logistic regression caught 39 of 42 malignant tumours with one false alarm. The 21-feature subset gave identical scores. Across eight further data splits the subset matched the full model on recall and AUC and was 0.3 percentage points lower on accuracy. The search shortened the model but did not beat random subsets of the same size, and the subset it chose varied from 13 to 30 features between splits. The report states these limits and suggests lowering the decision threshold to reduce missed cancers.
+              <div class="table-wrap"><table>
+                <caption>Mean and standard deviation over eight data splits. Random-subset figures are means.</caption>
+                <thead><tr><th scope="col">Measure</th><th scope="col">All 30 features</th><th scope="col">Searched subset</th><th scope="col">Random subset, same size</th></tr></thead>
+                <tbody>
+                  <tr><td>Accuracy</td><td>0.973 ± 0.017</td><td>0.970 ± 0.013</td><td>0.968</td></tr>
+                  <tr><td>Recall</td><td>0.940 ± 0.048</td><td>0.940 ± 0.038</td><td>0.938</td></tr>
+                  <tr><td>AUC</td><td>0.993 ± 0.007</td><td>0.993 ± 0.007</td><td>not reported</td></tr>
+                  <tr><td>Features used</td><td>30</td><td>24.6 ± 5.7 (range 13 to 30)</td><td>same as subset</td></tr>
+                </tbody>
+              </table></div>
+            </dd></div>
+            <div><dt>Skills developed</dt><dd>Using a search algorithm to choose features, evaluating a model with accuracy, recall, AUC and cross-validation, checking results against baselines, working in a group on code split into four modules, and reporting limits honestly.</dd></div>
+            <div><dt>Code</dt><dd>Group coursework, so the code and report are available on request.</dd></div>
+            <div><dt>AI use</dt><dd>As declared in the group report, DeepSeek assisted with the coding, and Copilot and Claude were used to refine the report wording.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="meta">
+          <p class="kind">Individual project</p>
+          <p>Introduction to Software Development, University of Dundee</p>
+          <ul class="tags" aria-label="Technologies used">
+            <li>Java</li><li>Object-oriented design</li><li>Input validation</li><li>Testing</li>
+          </ul>
+        </div>
+        <div class="detail">
+          <h3>Fitness Tracker</h3>
+          <dl>
+            <div><dt>What it is</dt><dd>A console application that converts a walking distance in kilometres into steps (1,312 steps per kilometre) and describes the result in plain English, such as "6 thousands, 5 hundreds and 6 tens". It also tracks a personal step goal, keeps a timestamped activity log and prints a session summary.</dd></div>
+            <div><dt>My role</dt><dd>I did all of it: the design of three classes with separate responsibilities (Distance, StepStats and UserInterfaceMain), the code, the test tables and the written report.</dd></div>
+            <div><dt>Challenge</dt><dd>The remaining-steps message was wrong for large distances because the total was calculated in one place and the displayed breakdown in another. Rounding also happened after the breakdown in early versions. I fixed both by rounding once, immediately after the conversion, and rebuilding the total from the same values the user sees.</dd></div>
+            <div><dt>Skills developed</dt><dd>Debugging from a symptom back to its cause, validating every kind of bad input (letters, symbols, zero, negative and very large numbers), and recording tests in a table of inputs, expected output and result.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="meta">
+          <p class="kind">Personal project</p>
+          <p>Employability for Computing Professionals, University of Dundee</p>
+          <ul class="tags" aria-label="Technologies used">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive design</li>
+          </ul>
+        </div>
+        <div class="detail">
+          <h3>This portfolio website</h3>
+          <dl>
+            <div><dt>What it is</dt><dd>The site you are reading. It is a responsive single-page portfolio with light and dark themes, keyboard-friendly navigation, an animated illustration of my feature-selection project and a downloadable CV tailored to an engineering internship.</dd></div>
+            <div><dt>My role</dt><dd>I chose the content and structure, supplied the project material and checked every statement against my own work. The code was produced with AI assistance (Claude), as set out in the AI use statement below.</dd></div>
+            <div><dt>Challenge</dt><dd>My work history is mostly retail, and the internship I am applying for is in engineering. I led with projects and kept only the roles that show accuracy, teamwork and responsibility.</dd></div>
+          </dl>
+        </div>
+      </article>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="section-head">
+        <h2 id="skills-title">What I <mark>bring</mark></h2>
+        <p>Each skill points to where I have used it.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div>
+          <h3>Technical</h3>
+          <ul class="skill-list">
+            <li><strong>Python</strong><span>Used in the breast cancer detection project (pandas, NumPy, scikit-learn, matplotlib), where I worked on the hill-climbing feature-selection component.</span></li>
+            <li><strong>Excel</strong><span>Good working knowledge.</span></li>
+            <li><strong>Java and object-oriented design</strong><span>Fitness Tracker: three classes, each with one responsibility, and helper methods that avoid repeated validation code.</span></li>
+            <li><strong>Machine learning and data</strong><span>Logistic regression, hill-climbing feature selection and model evaluation (accuracy, recall, AUC, cross-validation) on the WDBC dataset.</span></li>
+            <li><strong>Testing and debugging</strong><span>Test tables covering normal, boundary and invalid input, and a rounding defect traced to its cause and fixed.</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Transferable</h3>
+          <ul class="skill-list">
+            <li><strong>Explaining ideas clearly</strong><span>Wrote the group report on methods, results and limitations, and documented my Java project with test tables. I handle customer queries and returns at TK Maxx.</span></li>
+            <li><strong>Problem solving</strong><span>Traced a rounding defect to its cause. The hill-climbing search explores a space of 1.07 billion feature subsets with about 53 evaluations on average.</span></li>
+            <li><strong>Data, statistics and experiments</strong><span>Train-test splits, cross-validation and random baselines, with means and standard deviations over eight splits.</span></li>
+            <li><strong>Adaptability</strong><span>Our first version let the search see the test patients. We spotted it, redesigned the pipeline and re-ran the experiments.</span></li>
+            <li><strong>Teamwork and reliability</strong><span>A group of four on the machine-learning project. As Retail Team Leader at TOHG Ventures I coordinated a small team and kept accurate inventory records. At TK Maxx I handle cash and card payments accurately.</span></li>
+            <li><strong>Initiative</strong><span>Added a goal tracker, activity log and session summary to my Java project beyond the brief.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <h3>Code example from the Fitness Tracker</h3>
+        <p>The conversion method rounds once, then splits the total into thousands, hundreds and tens. Putting rounding before the split was the fix for the defect described above.</p>
+        <div class="code-pair">
+          <figure>
+            <figcaption class="cap">Distance.java</figcaption>
+<pre><code>public StepStats convert() {
+    final int STEPS_PER_KM = 1312;
+
+    long totalSteps = Math.round(kilometres * STEPS_PER_KM);
+
+    int thousands = (int) (totalSteps / 1000);
+    int hundreds  = (int) ((totalSteps % 1000) / 100);
+    int tens      = (int) ((totalSteps % 100) / 10);
+
+    return new StepStats(thousands, hundreds, tens);
+}</code></pre>
+          </figure>
+          <figure>
+            <figcaption class="cap">Output from a real run (goal 7000, distance 5 km)</figcaption>
+<pre><code>=== MAIN MENU ===
+1. Pretty print step statistics
+2. Convert distance (km) into steps
+Select an option (1 or 2): 2
+
+--- DISTANCE CONVERSION ---
+Enter distance in kilometres (greater than 0): 5
+You entered: 5.0 km
+Equivalent steps: 6 thousands, 5 hundreds and 6 tens
+You're 440 steps away from your goal. You can do this!</code></pre>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="cv" aria-labelledby="cv-title">
+      <div class="section-head">
+        <h2 id="cv-title">My <mark>CV</mark></h2>
+        <p>My two-page CV is tailored to the Engineering Internship at NatWest Group. The saved copy of that advert is linked in the footer.</p>
+      </div>
+      <div class="actions" style="margin-top:0">
+        <a class="btn solid" href="Fredericka_Nketsia_CV.pdf" target="_blank" rel="noopener">Open or save the CV (PDF)</a>
+      </div>
+      <div class="cv-grid">
+        <a href="Fredericka_Nketsia_CV.pdf" target="_blank" rel="noopener"><img src="cv-page-1.png" alt="Page 1 of Fredericka Nketsia's CV: profile, strengths for the role, technical skills and education" width="794" height="1123"></a>
+        <a href="Fredericka_Nketsia_CV.pdf" target="_blank" rel="noopener"><img src="cv-page-2.png" alt="Page 2 of Fredericka Nketsia's CV: projects, work experience and additional information" width="794" height="1123"></a>
+      </div>
+    </section>
+
+    <section id="profiles" aria-labelledby="profiles-title">
+      <div class="section-head">
+        <h2 id="profiles-title">Say <mark>hello</mark></h2>
+        <p>Where to find my work and get in touch.</p>
+      </div>
+      <ul class="profiles">
+        <li><span class="label">GitHub</span><a href="https://github.com/Fredericka-nket" target="_blank" rel="noopener">github.com/Fredericka-nket</a></li>
+        <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/fredericka-efua-fynnba-nketsia-5b9212415" target="_blank" rel="noopener">linkedin.com/in/fredericka-efua-fynnba-nketsia-5b9212415</a></li>
+        <li><span class="label">Email</span><span class="value"><span id="email">frederickanketsia@gmail.com</span><button class="copy" type="button" id="copy-email">Copy</button></span></li>
+      </ul>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>AI use statement.</strong> I used Claude (an AI assistant made by Anthropic) to help draft and build this portfolio and my CV, as permitted for module CS21001 at the Green level of AI use. I supplied the project material, reviewed the content and take responsibility for its accuracy.</p>
+    <p><strong>Appendix:</strong> <a href="Job_Advert_NatWest_Engineering_Internship.pdf" target="_blank" rel="noopener">Saved copy of the job advert (PDF)</a>. Last updated 25 November 2026.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var reduce = false;
+    try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+
+    /* Theme toggle */
+    try {
+      var root = document.documentElement;
+      var tbtn = document.getElementById("theme");
+      var saved = null;
+      try { saved = localStorage.getItem("fn-theme"); } catch (e) {}
+      if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+      tbtn.addEventListener("click", function () {
+        var cur = root.getAttribute("data-theme");
+        if (!cur) { cur = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
+        var next = cur === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("fn-theme", next); } catch (e) {}
+      });
+    } catch (e) {}
+
+    /* Feature-selection illustration */
+    try {
+      var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+      var removed = chips.filter(function (c) { return c.getAttribute("data-order"); })
+        .sort(function (a, b) { return a.getAttribute("data-order") - b.getAttribute("data-order"); });
+      var countEl = document.getElementById("count");
+      var timers = [];
+      function run() {
+        timers.forEach(clearTimeout); timers = [];
+        removed.forEach(function (c) { c.classList.remove("off"); });
+        countEl.textContent = "30";
+        removed.forEach(function (c, i) {
+          timers.push(setTimeout(function () {
+            c.classList.add("off");
+            countEl.textContent = String(30 - (i + 1));
+          }, 700 + i * 380));
+        });
+      }
+      document.getElementById("replay").addEventListener("click", function () {
+        if (reduce) { return; }
+        run();
+      });
+      if (!reduce) { run(); }
+    } catch (e) {}
+
+    /* Rotating role line */
+    try {
+      if (!reduce) {
+        var phrases = ["machine-learning models", "Java applications", "clear technical reports", "evidence-based conclusions"];
+        var el = document.getElementById("rot");
+        var i = 0;
+        setInterval(function () {
+          el.style.opacity = "0";
+          setTimeout(function () { i = (i + 1) % phrases.length; el.textContent = phrases[i]; el.style.opacity = "1"; }, 220);
+        }, 2800);
+      }
+    } catch (e) {}
+
+    /* Count-up on the headline results */
+    try {
+      var nums = Array.prototype.slice.call(document.querySelectorAll(".num[data-to]"));
+      if (!reduce && "IntersectionObserver" in window && nums.length) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting) { return; }
+            io.unobserve(en.target);
+            var n = en.target, to = parseFloat(n.getAttribute("data-to")), dec = parseInt(n.getAttribute("data-dec"), 10), suf = n.getAttribute("data-suffix") || "";
+            var start = null, dur = 900;
+            function step(t) {
+              if (start === null) { start = t; }
+              var p = Math.min(1, (t - start) / dur);
+              n.textContent = (to * (1 - Math.pow(1 - p, 3))).toFixed(dec) + suf;
+              if (p < 1) { requestAnimationFrame(step); } else { n.textContent = to.toFixed(dec) + suf; }
+            }
+            requestAnimationFrame(step);
+          });
+        }, { threshold: 0.6 });
+        nums.forEach(function (n) { io.observe(n); });
+      }
+    } catch (e) {}
+
+    /* Copy email */
+    try {
+      var btn = document.getElementById("copy-email");
+      var em = document.getElementById("email");
+      btn.addEventListener("click", function () {
+        var text = em.textContent;
+        function selectText() {
+          try {
+            var r = document.createRange(); r.selectNodeContents(em);
+            var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+            btn.textContent = "Selected";
+          } catch (e) {}
+        }
+        try { navigator.clipboard.writeText(text).then(function () { btn.textContent = "Copied"; }, selectText); }
+        catch (e) { selectText(); }
+        setTimeout(function () { btn.textContent = "Copy"; }, 2000);
+      });
+    } catch (e) {}
+  })();
+</script>
+
+</body>
+</html>
